@@ -1,4 +1,6 @@
 #include <iostream>
+#include <chrono>
+
 
 using namespace std;
 
@@ -8,9 +10,16 @@ int main(int argc, char** argv)
 {
     int n = 1e6;
 
-    float * out = poipar(100, 1, 2, 1, n);
+    auto dx = std::chrono::high_resolution_clock::now();
 
-    for(int i = 0; i < n; i++)
+    float * out = poipar(1e3, 1, 2, 1, n);
+
+    auto dy = std::chrono::high_resolution_clock::now();
+    std::chrono::duration<double> dif = dy - dx;
+    std::cout << dif.count() << " seconds" << std::endl;
+
+
+    for(int i = 0; i < 10; i++)
     {
         printf("%f\n", out[i]);
     }
